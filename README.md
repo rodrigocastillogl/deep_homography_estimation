@@ -68,4 +68,4 @@ generate a single training sample:
 
 Source: [(DeTone, Malisiewicz and Rabinovich, 2016)](https://arxiv.org/abs/1606.03798)
 
-Images resized to $ 320 \times 240 $ and converted to grayscale.
+Images resized to $320 \times 240$ and converted to grayscale.
