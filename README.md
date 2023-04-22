@@ -7,7 +7,7 @@ Centro de Investigación en Matemáticas, A.C.
 
 > Rodrigo Castillo González
 
-## I. Introduction
+## Introduction
 
 Estimating a 2D homography (projective transformation) from a pair of images is a fundamental task in computer vision.
 Specially in scenarios such as: rotation only movements, planar scenes and scenes in which objects are very far from the viewer.
@@ -23,11 +23,9 @@ and the motivation for the network architechture is that currently, Convolutiona
 in tasks such as image processing, segmentation and classification. Additionally, CNNs present promising results for dense geometric
 computer vision tasks (optical flow and depth estimation).
 
-## II. Method
+## Methods
 
-## II. Methods
-
-### A) The 4-point homography parametrization
+### The 4-point homography parametrization
 The 4-point parameterization has been used in traditional homography estimation methods. Two views of a plane are related by a homography:
 
 $$\boldsymbol{p} ' \ \sim \ H \boldsymbol{p}$$
@@ -57,3 +55,11 @@ $$\begin{matrix}
 \end{matrix}$$
 
 so we need $4$ point correspondences to get a non homogeneous $8 \times 8$ linear system.
+
+## Data generation
+
+Training deep convolutional networks from scratch requires a large amount of data. To meet this requirement, we generate labeled
+training examples by applying random projective transformations to a large dataset of natural images. Following the steps below to
+generate a single training sample:
+
+Images resized to $ 320 \times 240 $ and converted to grayscale.
