@@ -30,8 +30,30 @@ computer vision tasks (optical flow and depth estimation).
 ### A) The 4-point homography parametrization
 The 4-point parameterization has been used in traditional homography estimation methods. Two views of a plane are related by a homography:
 
-```math
-\sqrt{3}
-```
-
 $$\boldsymbol{p} ' \ \sim \ H \boldsymbol{p}$$
+
+$$\begin{bmatrix}
+    u' \\
+    v' \\
+    1
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+    H_{11} & H_{12} & H_{13} \\
+    H_{21} & H_{22} & H_{23} \\
+    H_{31} & H_{32} & H_{33} \\
+\end{bmatrix}
+\begin{bmatrix}
+    u \\
+    v \\
+    1
+\end{bmatrix}$$
+
+Suppose $H_{33} = 1$, we want to find the $8$ unknown entries of $H$ from correspondences in the plane. We can write $2$ equations given one correspondence, these are
+
+$$\begin{matrix}
+    -uH_{11} & -vH_{12} & -H_{13} & & & & + \ (u' u) H_{31} & + \ (u' v) H_{32} & = \ - u'\\
+    \ & & & -uH_{21} & -vH_{22} & -H_{23} & + \ (v' u)H_{31} & + \ (v' v)H_{32} & = \ - v'
+\end{matrix}$$
+
+so we need $4$ point correspondences to get a non homogeneous $8 \times 8$ linear system.
