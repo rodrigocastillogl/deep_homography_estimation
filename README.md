@@ -62,4 +62,10 @@ Training deep convolutional networks from scratch requires a large amount of dat
 training examples by applying random projective transformations to a large dataset of natural images. Following the steps below to
 generate a single training sample:
 
+<p align="center">
+<img src = "https://github.com/rodrigocastillogl/deep_homography_estimation/blob/master/imgs/data_generation.png" width = 50% height = 50%>
+</p>
+
+Source: [(DeTone, Malisiewicz and Rabinovich, 2016)](https://arxiv.org/abs/1606.03798)
+
 Images resized to $ 320 \times 240 $ and converted to grayscale.
