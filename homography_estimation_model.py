@@ -7,51 +7,84 @@ class HomographyModel(nn.Module):
     Deep Homography Estimation Model.
     Attributes
     ----------
+        * Layers :
+            - Convolutional layers -> layer1-layer8
+            - Dropout -> drop1
+            - Fully connected layer -> fc1
+            - Dropout -> drop2
+            - Fully connected layer -> fc2
     Methods
     -------
+        * Forward(): Forward pass.
     """
 
     def __init__(self):
         """
         Constructor.
-        Input
-        -----
-        Output
-        ------
         """
+        
         super().__init__()
 
-        self.layer1 = nn.Sequential( nn.Conv2d(2, 64, 3, padding = 'same') ,
-                      nn.ReLU()                                            ,
-                      nn.BatchNorm2d(64)                                   )
+        self.layer1 = nn.Sequential(
+            nn.Conv2d(2, 64, 3, padding = 'same') ,
+            nn.ReLU()                             ,
+            nn.BatchNorm2d(64)
+        )
 
-        self.layer2 = nn.Sequential( nn.Conv2d(64, 64, 3, padding = 'same') ,
-                      nn.ReLU()                                             ,
-                      nn.BatchNorm2d(64)                                    ,
-                      nn.MaxPool2d(2)                                       )
+        self.layer2 = nn.Sequential(
+            nn.Conv2d(64, 64, 3, padding = 'same') ,
+            nn.ReLU()                              ,
+            nn.BatchNorm2d(64)                     ,
+            nn.MaxPool2d(2)
+        )
 
-        self.layer3 = nn.Sequential( nn.Conv2d(64, 64, 3, padding = 'same') ,
-                      nn.ReLU()                                             ,
-                      nn.BatchNorm2d(64)                                    )
+        self.layer3 = nn.Sequential(
+            nn.Conv2d(64, 64, 3, padding = 'same') ,
+            nn.ReLU()                              ,
+            nn.BatchNorm2d(64)
+        )
 
-        self.layer4 = nn.Sequential( nn.Conv2d(64, 64, 3, padding = 'same') ,
-                      nn.ReLU()                                             ,
-                      nn.BatchNorm2d(64)                                    ,
-                      nn. MAxPool2d(2)                                      )
+        self.layer4 = nn.Sequential(
+            nn.Conv2d(64, 64, 3, padding = 'same') ,
+            nn.ReLU()                              ,
+            nn.BatchNorm2d(64)                     ,
+            nn. MAxPool2d(2)
+        )
         
-        self.layer5 = nn.Sequential( nn.Conv2d(64, 128, 3, padding = 'same') ,
-                      nn.ReLU()                                              ,
-                      nn.BatchNorm2d(128)                                    )
+        self.layer5 = nn.Sequential(
+            nn.Conv2d(64, 128, 3, padding = 'same') ,
+            nn.ReLU()                               ,
+            nn.BatchNorm2d(128)
+        )
         
-        self.layer6 = nn.Sequential( nn.Conv2d(128, 128, 3, padding = 'same') ,
-                      nn.ReLU()                                               ,
-                      nn.BatchNorm2d(128)                                     ,
-                      nn. MAxPool2d(2)                                        )
+        self.layer6 = nn.Sequential(
+            nn.Conv2d(128, 128, 3, padding = 'same') ,
+            nn.ReLU()                                ,
+            nn.BatchNorm2d(128)                      ,
+            nn. MAxPool2d(2)
+        )
         
-        self.layer7 = nn.Sequential( nn.Conv2d(128, 128, 3, padding = 'same') ,
-                      nn.ReLU()                                               ,
-                      nn.BatchNorm2d(128)                                     )
+        self.layer7 = nn.Sequential(
+            nn.Conv2d(128, 128, 3, padding = 'same') ,
+            nn.ReLU()                                ,
+            nn.BatchNorm2d(128)
+        )
         
-        self.layer8 = nn.Sequential( nn.Conv2d(128, 128, 3, padding = 'same') ,
-                      nn.Linear()                                               ,
-                      nn.BatchNorm2d(128)                                    )
+        self.layer8 = nn.Sequential(
+            nn.Conv2d(128, 128, 3, padding = 'same') ,
+            nn.ReLU()                                ,
+            nn.BatchNorm2d(128)
+        )
+
+        self.drop1 = nn.Dropout2d(0.5)
+        self.fc1 = nn.Linear(128*16*16, 1024)
+        self.drop2 = nn.Dropout(0.5)
+        self. fc2 = nn.Linear(1024, 8)
+    
+    def forward(self):
+        """
+        Forward pass.
+        Input
+        -----
+        """
+        pass
