@@ -98,7 +98,7 @@ class HomographyModel(nn.Module):
         # ----------------------------
  
         # Flatten
-        out = out.view(-1, 128*16*16, 1024)
+        out = out.view(-1, 128*16*16)
 
         # --- Fully connected + drop out ---
         out = self.drop1(out)
