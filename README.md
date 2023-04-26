@@ -6,6 +6,7 @@ Daniel DeTone, Tomasz Malisiewicz and Andrew Rabinovich pressented as Final Proj
 Centro de Investigación en Matemáticas, A.C.
 
 > Rodrigo Castillo González
+
 > Alejandro Daniel Lemus Najera
 
 ## Introduction
