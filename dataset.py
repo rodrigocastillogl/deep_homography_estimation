@@ -2,6 +2,7 @@ import glob
 import os
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import Dataset
 from torchvision.transforms import ToTensor
@@ -138,3 +139,32 @@ class HomographyDataset(Dataset):
         point_diff = torch.from_numpy(H)
 
         return imgs, point_diff
+
+
+def display_images( imgs, img_path = 'show' ):
+    """
+    Display HomographyDataset example with matplotlib.
+    Input
+    -----
+        * imgs: tensor with images.
+        * path: path to save the figure.
+    Output
+    ------
+        None
+    """
+    
+    plt.figure( figsize = (7,3) )
+    
+    plt.subplot(1,2,1)
+    plt.imshow(imgs[:,:,0], cmap = 'gray')
+    plt.xticks([]), plt.yticks([])
+    
+    plt.subplot(1,2,2)
+    plt.imshow(imgs[:,:,1], cmap = 'gray')
+    plt.xticks([]), plt.yticks([])
+    plt.tight_layout()
+
+    if img_path == 'show':
+        plt.show()
+    else:
+        plt.save_fig(img_path)
