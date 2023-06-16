@@ -1,7 +1,4 @@
 import os
-from glob import glob
-#from shutil import rmtree
-import errno
 import wget
 import zipfile
 
@@ -22,58 +19,29 @@ def download_data( data_url = None, data_directory = None ):
 
     print(f'Downloading dataset (it may take a while)...')
     response = wget.download(data_url, data_directory)
-    print(f'Save as {data_directory}')
+    print(f'Saved as {data_directory}')
 
-
-def split_data( data_path = None, ratio = 0.8 ):
-    pass
     
+data_url = 'http://images.cocodataset.org/zips/train2017.zip'
 
+root_path = './'
+dataset_path = root_path + 'train2017'
+zip_path = root_path + 'ms-coco.zip'
 
-if __name__ == '__main__':
+if os.path.exists(dataset_path):
+    #   show a message and do nothing
+    print( 'The dataset already exists at ' + dataset_path )
 
-    data_url = 'http://images.cocodataset.org/zips/train2017.zip'
+else:
+    # download dataset zip file
+    download_data(data_url, zip_path)
+    
+    # extract data from zip file
+    print('Extracting MS-COCO 2017 dataset (it may take a while)...')
+    with zipfile.ZipFile(zip_path, 'r') as archive:
+        archive.extractall(root_path)
+    print('Completed')
 
-
-    dataset_directory = 'data'
-    train_directory = dataset_directory + '/train'
-    test_directory  = dataset_directory + '/test'
-
-    # create dataset directory
-    try:
-        os.makedirs(dataset_directory)
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            raise
-
-    if os.path.exists(train_directory) and os.path.exists(test_directory):
-        # if train and test directories already exists:
-        #   show a message and do nothing
-        print( 'The dataset already exists at ' + train_directory +
-               'and' + test_directory  )
-    else:
-
-        # download dataset zip file
-        zip_directory = dataset_directory + "/ms-coco.zip"
-        download_data(data_url, dataset_directory)
-
-        # extract fata from zip file
-        print('Extracting MS-COCO 2017 dataset ...')
-        with zipfile.ZipFile(zip_directory, 'r') as archive:
-            archive.extractall(dataset_directory)
-        # remove zip file
-        os.remove(zip_directory)
-
-
-        # create train and test directories
-        try:
-            os.makedirs(train_directory)
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-        
-        try:
-            os.makedirs(test_directory)
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
+    # remove zip file
+    os.remove(zip_path)
+    print(zip_path + ' deleted.')
